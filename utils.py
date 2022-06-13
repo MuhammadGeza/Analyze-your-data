@@ -336,16 +336,16 @@ def heatmap_plot(df, method):
         'spearman': 'Purples'
     }
     plt.figure(figsize=(7, 6))
-    sns.heatmap(df.corr(method=method), annot=True, cmap=color[method], vmin=-1, vmax=1, linewidths=0.1, square=True)
+    sns.heatmap(df.corr(method=method), cmap=color[method], vmin=-1, vmax=1, linewidths=0.1, square=True)
     plt.xticks(rotation=45, ha='right')
     graph = get_graph()
     return graph
     
 def correlations(df):
     attr = {
-        'pearson': ['Greens', "<h3>Pearson's r</h3>The Pearson's correlation coefficient (<em>r</em>) is a measure of linear correlation between two variables. It's value lies between -1 and +1, -1 indicating total negative linear correlation, 0 indicating no linear correlation and 1 indicating total positive linear correlation. Furthermore, <em>r</em> is invariant under separate changes in location and scale of the two variables, implying that for a linear function the angle to the x-axis does not affect <em>r</em>.<br><br>To calculate <em>r</em> for two variables <em>X</em> and <em>Y</em>, one divides the covariance of <em>X</em> and <em>Y</em> by the product of their standard deviations."],
-        'kendall': ['Blues', "<h3>Kendall's τ</h3>Similarly to Spearman's rank correlation coefficient, the Kendall rank correlation coefficient (<em>τ</em>) measures ordinal association between two variables. It's value lies between -1 and +1, -1 indicating total negative correlation, 0 indicating no correlation and 1 indicating total positive correlation. <br><br>To calculate <em>τ</em> for two variables <em>X</em> and <em>Y</em>, one determines the number of concordant and discordant pairs of observations. <em>τ</em> is given by the number of concordant pairs minus the discordant pairs divided by the total number of pairs."],
-        'spearman': ['Purples', "<h3>Spearman's ρ</h3>The Spearman's rank correlation coefficient (<em>ρ</em>) is a measure of monotonic correlation between two variables, and is therefore better in catching nonlinear monotonic correlations than Pearson's <em>r</em>. It's value lies between -1 and +1, -1 indicating total negative monotonic correlation, 0 indicating no monotonic correlation and 1 indicating total positive monotonic correlation.<br><br>To calculate <em>ρ</em> for two variables <em>X</em> and <em>Y</em>, one divides the covariance of the rank variables of <em>X</em> and <em>Y</em> by the product of their standard deviations."]
+        'pearson': "<h3>Pearson's r</h3>The Pearson's correlation coefficient (<em>r</em>) is a measure of linear correlation between two variables. It's value lies between -1 and +1, -1 indicating total negative linear correlation, 0 indicating no linear correlation and 1 indicating total positive linear correlation. Furthermore, <em>r</em> is invariant under separate changes in location and scale of the two variables, implying that for a linear function the angle to the x-axis does not affect <em>r</em>.<br><br>To calculate <em>r</em> for two variables <em>X</em> and <em>Y</em>, one divides the covariance of <em>X</em> and <em>Y</em> by the product of their standard deviations.",
+        'kendall': "<h3>Kendall's τ</h3>Similarly to Spearman's rank correlation coefficient, the Kendall rank correlation coefficient (<em>τ</em>) measures ordinal association between two variables. It's value lies between -1 and +1, -1 indicating total negative correlation, 0 indicating no correlation and 1 indicating total positive correlation. <br><br>To calculate <em>τ</em> for two variables <em>X</em> and <em>Y</em>, one determines the number of concordant and discordant pairs of observations. <em>τ</em> is given by the number of concordant pairs minus the discordant pairs divided by the total number of pairs.",
+        'spearman':"<h3>Spearman's ρ</h3>The Spearman's rank correlation coefficient (<em>ρ</em>) is a measure of monotonic correlation between two variables, and is therefore better in catching nonlinear monotonic correlations than Pearson's <em>r</em>. It's value lies between -1 and +1, -1 indicating total negative monotonic correlation, 0 indicating no monotonic correlation and 1 indicating total positive monotonic correlation.<br><br>To calculate <em>ρ</em> for two variables <em>X</em> and <em>Y</em>, one divides the covariance of the rank variables of <em>X</em> and <em>Y</em> by the product of their standard deviations."
     }
     method = st.selectbox('Choose method',['pearson', 'kendall', 'spearman'])
     image = heatmap_plot(df, method)
@@ -355,7 +355,7 @@ def correlations(df):
                             <img class="responsive" src="data:image/png;base64,{image}">
                         </div>
                         <div class="col-md-4 mb-3">
-                            {attr[method][1]}
+                            {attr[method]}
                         </div>
                     </div>
                     </div>""", unsafe_allow_html=True)
